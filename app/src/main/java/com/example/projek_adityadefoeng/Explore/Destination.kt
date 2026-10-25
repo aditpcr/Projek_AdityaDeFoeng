@@ -7,10 +7,11 @@ data class Destination(
     val name: String,
     val location: String,
     @DrawableRes val imageRes: Int,
-    val rating: Float,
-    val about: String,
-    val tips: String,
-    val bestTime: String
+    val avatarUrl: String = "",
+    val rating: Float = 4.5f,
+    val about: String = "",
+    val tips: String = "",
+    val bestTime: String = ""
 )
 
 /** Sumber data sementara (hardcoded). Nanti bisa diganti API / database. */
@@ -116,8 +117,6 @@ object DestinationData {
             tips = "TODO: isi tips perjalanan.",
             bestTime = "TODO: isi waktu terbaik berkunjung."
         )
-
-
     )
 
     fun findById(id: Int): Destination? = list.firstOrNull { it.id == id }

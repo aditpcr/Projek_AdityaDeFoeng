@@ -34,7 +34,8 @@ class LoginActivity : AppCompatActivity() {
                 editor.putString("username", user)
                 editor.apply()
 
-                startActivity(Intent(this, HomeActivity::class.java))
+                startActivity(Intent(this, BaseActivity::class.java))
+                finish()
             } else {
                 AlertDialog.Builder(this)
                     .setTitle("Login Gagal")

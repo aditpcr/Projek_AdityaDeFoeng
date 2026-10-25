@@ -1,10 +1,13 @@
-package com.example.projek_adityadefoeng
+package com.example.projek_adityadefoeng.Explore
 
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.projek_adityadefoeng.DestinationData
+import com.example.projek_adityadefoeng.R
+import com.example.projek_adityadefoeng.TopBarHelper
 
 class DetailActivity : AppCompatActivity() {
 
