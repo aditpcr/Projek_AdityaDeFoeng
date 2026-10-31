@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.material)
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("com.github.bumptech.glide:glide:4.16.0")
+    implementation("androidx.gridlayout:gridlayout:1.0.0")
     testImplementation(libs.junit)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)

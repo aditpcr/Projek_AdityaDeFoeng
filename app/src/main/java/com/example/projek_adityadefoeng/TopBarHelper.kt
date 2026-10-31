@@ -6,30 +6,43 @@ import android.content.Intent
 import android.net.Uri
 import android.view.View
 import android.widget.ImageView
-import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.view.ContextThemeWrapper
+import androidx.appcompat.widget.PopupMenu
+import com.example.projek_adityadefoeng.Tutorial.TutorialMessageActivity
 
 object TopBarHelper {
 
-    private const val TRAVELOKA_URL =
-        "https://www.traveloka.com/en-id?id=14035715123755047605&adloc=en-id&kw=traveloka&gmt=e&gn=g&gd=c&gdm=&gcid=705639865085&gdp=&gdt=&gap=&pc=1&aid=167430873511&wid=kwd-51659214310&fid=&gid=1007727&utm_id=T4iqtkR9&ad_id=705639865085&target_id=kwd-51659214310&click_id=Cj0KCQjwrvHWBhDKARIsABmp7h0U9HnoyHApBlekuIm3BzNG_QAz_5xD1wYNtNep0xgxL_RWUf58veYaAq1EEALw_wcB&group_id=167430873511&gad_source=1&gad_campaignid=21466202329&gbraid=0AAAAADi60Ukg4Xy9KKv9LCkGbxZ2Ohadk&gclid=Cj0KCQjwrvHWBhDKARIsABmp7h0U9HnoyHApBlekuIm3BzNG_QAz_5xD1wYNtNep0xgxL_RWUf58veYaAq1EEALw_wcB"
+    private const val TRAVELOKA_URL = "https://www.traveloka.com"
 
     fun setup(activity: Activity) {
-        val root = activity.findViewById<View>(android.R.id.content) ?: return
+        val root = activity.findViewById<View>(R.id.main)
+            ?: activity.findViewById<View>(android.R.id.content)
+            ?: activity.window.decorView
         setup(root, activity)
     }
 
     fun setup(view: View, activity: Activity) {
-        val ivLogo = view.findViewById<ImageView>(R.id.ivLogoSmall)
-        val ivMenu = view.findViewById<ImageView>(R.id.ivMenu)
-        val btnOrder = view.findViewById<View>(R.id.btnOrder)
+        val container = view.findViewById<View>(R.id.topBar) ?: view
+        container.bringToFront()
+
+        val ivLogo = container.findViewById<ImageView>(R.id.ivLogoSmall)
+        val ivMenu = container.findViewById<ImageView>(R.id.ivMenu)
+        val btnOrder = container.findViewById<View>(R.id.btnOrder)
 
         btnOrder?.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(TRAVELOKA_URL))
-            activity.startActivity(intent)
+            Toast.makeText(activity, "Opening Traveloka...", Toast.LENGTH_SHORT).show()
+            try {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(TRAVELOKA_URL))
+                activity.startActivity(intent)
+            } catch (_: Exception) {
+                Toast.makeText(activity, "Unable to open browser", Toast.LENGTH_SHORT).show()
+            }
         }
 
         ivLogo?.setOnClickListener {
+            Toast.makeText(activity, "Going Home...", Toast.LENGTH_SHORT).show()
             if (activity is BaseActivity) {
                 activity.selectHomeTab()
             } else {
@@ -41,10 +54,16 @@ object TopBarHelper {
         }
 
         ivMenu?.setOnClickListener { anchor ->
-            val popup = PopupMenu(activity, anchor)
+            val contextWrapper = ContextThemeWrapper(activity, R.style.Theme_Projek_AdityaDeFoeng)
+            val popup = PopupMenu(contextWrapper, anchor)
             popup.menuInflater.inflate(R.menu.menu_top_bar, popup.menu)
             popup.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
+                    R.id.action_tutorial -> {
+                        val intent = Intent(activity, TutorialMessageActivity::class.java)
+                        activity.startActivity(intent)
+                        true
+                    }
                     R.id.action_logout -> {
                         showLogoutConfirmationDialog(activity)
                         true

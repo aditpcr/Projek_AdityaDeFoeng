@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.example.projek_adityadefoeng.BaseActivity
 import com.example.projek_adityadefoeng.Destination
 import com.example.projek_adityadefoeng.R
 import com.google.android.material.snackbar.Snackbar
@@ -55,9 +56,14 @@ class DestinationAdapter(
                 Snackbar.LENGTH_SHORT
             ).show()
 
-            val intent = Intent(context, DetailActivity::class.java)
-            intent.putExtra(DetailActivity.EXTRA_DESTINATION_ID, data.id)
-            context.startActivity(intent)
+            val baseActivity = context as? BaseActivity
+            if (baseActivity != null) {
+                baseActivity.openDetail(data.id)
+            } else {
+                val intent = Intent(context, DetailActivity::class.java)
+                intent.putExtra(DetailActivity.EXTRA_DESTINATION_ID, data.id)
+                context.startActivity(intent)
+            }
         }
 
         return view

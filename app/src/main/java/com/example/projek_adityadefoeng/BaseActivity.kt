@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import com.example.projek_adityadefoeng.Explore.DetailFragment
 import com.example.projek_adityadefoeng.Explore.ExploreFragment
 import com.example.projek_adityadefoeng.Home.HomeFragment
 import com.example.projek_adityadefoeng.More.MoreFragment
@@ -61,6 +62,18 @@ class BaseActivity : AppCompatActivity() {
         } else {
             bottomNavView.selectedItemId = R.id.navigation_home
         }
+    }
+
+    fun selectMoreTab() {
+        bottomNavView.selectedItemId = R.id.navigation_more
+    }
+
+    fun openDetail(destinationId: Int) {
+        val fragment = DetailFragment.newInstance(destinationId)
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 
     private fun loadFragment(fragment: Fragment) {
