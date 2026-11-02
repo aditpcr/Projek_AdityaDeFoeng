@@ -1,57 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Top bar yang dipakai ulang di Home, Explore, dan Detail via <include> -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/bg_top_bar"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:paddingStart="16dp"
-    android:paddingTop="10dp"
-    android:paddingEnd="16dp"
-    android:paddingBottom="10dp">
+    android:layout_height="wrap_content">
 
+    <!-- One drawable draws the whole header: white body + wave + teal accent wave -->
     <ImageView
-        android:id="@+id/ivLogoSmall"
-        android:layout_width="120dp"
-        android:layout_height="40dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:clickable="true"
-        android:focusable="true"
-        android:contentDescription="NusaGo"
-        android:scaleType="fitCenter"
-        android:src="@drawable/logo" />
-
-    <View
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:importantForAccessibility="no"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bg_header_shape" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btnOrder"
-        android:layout_width="wrap_content"
-        android:layout_height="28dp"
-        android:background="@drawable/bg_button_teal"
-        android:clickable="true"
-        android:focusable="true"
-        android:minWidth="0dp"
-        android:minHeight="0dp"
-        android:paddingStart="20dp"
+    <LinearLayout
+        android:id="@+id/topBarContent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="24dp"
+        android:paddingTop="10dp"
         android:paddingEnd="20dp"
-        android:text="Order Now"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="10sp" />
+        android:paddingBottom="34dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/ivMenu"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="12dp"
-        android:padding="4dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:clickable="true"
-        android:focusable="true"
-        android:contentDescription="Menu"
-        android:src="@drawable/ic_menu" />
-</LinearLayout>
+        <ImageView
+            android:id="@+id/ivLogoSmall"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="NusaGo, go to home"
+            android:scaleType="fitStart"
+            android:src="@drawable/logo" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="42dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:letterSpacing="0.04"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:text="Order Now"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/nusa_teal"
+            app:cornerRadius="21dp"
+            app:elevation="4dp" />
+
+        <ImageButton
+            android:id="@+id/ivMenu"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/bg_menu_circle"
+            android:contentDescription="Open menu"
+            android:padding="11dp"
+            android:src="@drawable/ic_menu"
+            app:tint="@color/nusa_teal" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
