@@ -1,5 +1,6 @@
 package com.example.projek_adityadefoeng
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -48,7 +49,26 @@ class BaseActivity : AppCompatActivity() {
         }
 
         if (savedInstanceState == null) {
-            bottomNavView.selectedItemId = R.id.navigation_home
+            val tab = intent.getStringExtra("extra_tab")
+            if (tab != null) {
+                handleTabExtra(intent)
+            } else {
+                bottomNavView.selectedItemId = R.id.navigation_home
+            }
+        }
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        handleTabExtra(intent)
+    }
+
+    private fun handleTabExtra(intent: Intent?) {
+        when (intent?.getStringExtra("extra_tab")) {
+            "home" -> selectHomeTab()
+            "explore" -> selectExploreTab()
+            "more" -> selectMoreTab()
         }
     }
 

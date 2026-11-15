@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.example.projek_adityadefoeng.BaseActivity
+import com.example.projek_adityadefoeng.More.Tab.TenthActivity
 import com.example.projek_adityadefoeng.R
 import com.example.projek_adityadefoeng.TopBarHelper
 
@@ -44,6 +45,10 @@ class MoreFragment : Fragment() {
                 startActivity(intent)
             } catch (_: Exception) {
             }
+        }
+
+        view.findViewById<Button>(R.id.btnToTab)?.setOnClickListener {
+            startActivity(Intent(requireContext(), TenthActivity::class.java))
         }
     }
 }

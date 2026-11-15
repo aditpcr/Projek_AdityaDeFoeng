@@ -116,4 +116,20 @@
 
     </androidx.gridlayout.widget.GridLayout>
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnToTab"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:text="Destinasi Populer"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:backgroundTint="@color/nusa_teal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gridMenu" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
