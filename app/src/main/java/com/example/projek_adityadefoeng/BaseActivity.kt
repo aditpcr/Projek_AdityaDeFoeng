@@ -11,6 +11,7 @@ import com.example.projek_adityadefoeng.Explore.DetailFragment
 import com.example.projek_adityadefoeng.Explore.ExploreFragment
 import com.example.projek_adityadefoeng.Home.HomeFragment
 import com.example.projek_adityadefoeng.More.MoreFragment
+import com.example.projek_adityadefoeng.Note.FragmentTravelNote
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class BaseActivity : AppCompatActivity() {
@@ -92,6 +93,13 @@ class BaseActivity : AppCompatActivity() {
         val fragment = DetailFragment.newInstance(destinationId)
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    fun openTravelNotes() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, FragmentTravelNote())
             .addToBackStack(null)
             .commit()
     }

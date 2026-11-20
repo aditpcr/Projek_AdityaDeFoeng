@@ -50,5 +50,9 @@ class MoreFragment : Fragment() {
         view.findViewById<Button>(R.id.btnToTab)?.setOnClickListener {
             startActivity(Intent(requireContext(), TenthActivity::class.java))
         }
+
+        view.findViewById<Button>(R.id.btnToNotes)?.setOnClickListener {
+            (activity as? BaseActivity)?.openTravelNotes()
+        }
     }
 }
